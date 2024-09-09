@@ -1,3 +1,0 @@
-Driver     Wage    licence      Yard    Truck   Type   Trailer   Load   Destination
------------------------------------------------------------------------------------------
-J.Smith, 5, Abnormal, Tullamore, Scania R580 (161 OY 69), Loaded, Lowloader, Digger, Belfast

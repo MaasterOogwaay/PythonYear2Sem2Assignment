@@ -111,6 +111,77 @@ class Ui_MainWindow(object):
 
         self.display(len(self.itemList) - 1)
 
+    # =======| Testing insert from file |=======
+    def insertFromFileEvent(self):
+        print("Inserting from file")
+        infile = open('input.txt', "r")
+        outfile = open('output8.txt', "w")
+        line = infile.readline()
+        line = infile.readline()
+
+        for line in infile:
+
+            name = ""
+            wage = ""
+            licence = ""
+            yard = ""
+            truck = ""
+            type = ""
+            desc1 = ""
+            desc2 = ""
+            desc3 = ""
+
+            list = line.split(", ")
+
+            print(list[0])
+            name += list[0]
+
+            print(list[1])
+            wage += list[1]
+
+            print(list[2])
+            licence += list[2]
+
+            print(list[3])
+            yard += list[3]
+
+            print(list[4])
+            truck += list[4]
+
+            print(list[5])
+            type += list[5]
+
+            print(list[6])
+            desc1 += list[6]
+
+            print(list[7])
+            desc2 += list[7]
+
+            print(list[8])
+            desc3 += list[8]
+
+            name = name
+            wage = wage
+            licence = licence
+            yard = yard
+            truck = truck
+            newType = type
+            description1 = desc1
+            description2 = desc2
+            description3 = desc3
+
+            print("Type is: " + newType)
+
+            if newType == 'Truck':
+                self.itemList.append(Truck(name, wage, licence, yard, truck, description1, description2, description3))
+            elif newType == 'Driver':
+                self.itemList.append(Driver(name, wage, licence, yard, truck, description1, description2, description3))
+            elif newType == 'Loaded':
+                print("Added to Loaded")
+                self.itemList.append(Loaded(name, wage, licence, yard, truck, description1, description2, description3))
+
+            self.display(len(self.itemList) - 1)
+
     def assignLoadEvent(self):
         name = self.driverName.text()
         wage = self.driverWage.text()
@@ -285,6 +356,12 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         self.loadDestination.setFont(font)
         self.loadDestination.setObjectName("loadDestination")
+        self.insertFromFileButton = QtWidgets.QPushButton(self.centralwidget)
+        self.insertFromFileButton.setGeometry(QtCore.QRect(160, 600, 126, 30))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.insertFromFileButton.setFont(font)
+        self.insertFromFileButton.setObjectName("insertFromFileButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 452, 26))
@@ -317,6 +394,7 @@ class Ui_MainWindow(object):
         self.actionExit.triggered.connect(self.exitEvent)  # type: ignore
         self.insertButton.pressed.connect(self.insertEvent)  # type: ignore
         self.exitButton.pressed.connect(self.exitEvent)  # type: ignore
+        self.insertFromFileButton.pressed.connect(self.insertFromFileEvent)  # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -348,6 +426,7 @@ class Ui_MainWindow(object):
         self.trailerType.setText(_translate("MainWindow", "Trailer : Lowloader"))
         self.assignedLoad.setText(_translate("MainWindow", "Load : Crusher"))
         self.loadDestination.setText(_translate("MainWindow", "Destination : Dublin"))
+        self.insertFromFileButton.setText(_translate("MainWindow", "Insert From FIle"))
         self.menuAdmin.setTitle(_translate("MainWindow", "Admin"))
         self.actionMark_Available.setText(_translate("MainWindow", "Mark Available"))
         self.actionMark_Unavailable.setText(_translate("MainWindow", "Mark Unavailable"))
